@@ -70,6 +70,9 @@ module JIRA
       end
 
       case options[:auth_type]
+      when :oauth_3legged
+        @request_client = Oauth3loClient.new(@options)
+        @consumer = @request_client.consumer        
       when :oauth, :oauth_2legged
         @request_client = OauthClient.new(@options)
         @consumer = @request_client.consumer
